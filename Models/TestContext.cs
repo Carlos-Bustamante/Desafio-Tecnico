@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Desafio_Tecnico.Models.TestDbContext;
+using Desafio_Tecnico.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Desafio_Tecnico.Models;
 
@@ -16,9 +17,22 @@ public partial class TestContext : DbContext
     {
     }
 
+    public DbSet<TipoProducto> TipoProductos { get; set; }
+    public DbSet<Producto> Productos { get; set; }
+    public DbSet<Stock> Stocks { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-VEEMG5N\\SQLEXPRESS;Database=Test;Encrypt=False;TrustServerCertificate=True;Trusted_Connection=True");
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+                //IConfigurationRoot configuration = new ConfigurationBuilder()
+                //        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                //        .AddJsonFile("Server=DESKTOP-VEEMG5N\\SQLEXPRESS;Database=Test;Encrypt=False;TrustServerCertificate=True;Trusted_Connection=True")
+                //        .Build();
+                optionsBuilder.UseSqlServer("Server=DESKTOP-VEEMG5N\\SQLEXPRESS;Database=Test;Encrypt=False;TrustServerCertificate=True;Trusted_Connection=True");
+        }
+    }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

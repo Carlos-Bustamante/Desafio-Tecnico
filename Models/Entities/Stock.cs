@@ -8,16 +8,19 @@ using System.Threading.Tasks;
 
 namespace Desafio_Tecnico.Models.Entities
 {
-    public class TipoProducto
+    public class Stock
     {
         [Key]
         [Column("ID")]
         public int Id { get; set; }
 
-        [Column("DESCRIPCION")]
-        public int Descripcion { get; set; }
+        public int IdProducto { get; set; }
 
-        public ICollection<Producto> Producto { get; set; }
+        [Column("CANTIDAD")]
+        public int Cantidad { get; set; }
+
+        [ForeignKey("IdProducto")]
+        public virtual Producto Producto { get; set; }
 
     }
 }
