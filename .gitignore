@@ -1,0 +1,4 @@
+# Ignorar los directorios bin y obj en todos los subdirectorios
+.vs/
+**/bin/
+**/obj/
