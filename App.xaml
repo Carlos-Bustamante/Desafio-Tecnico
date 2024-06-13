@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:Desafio_Tecnico"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="./Resource/ButtonStyle.xaml"/>
+                <ResourceDictionary Source="./Resource/UIColors.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
