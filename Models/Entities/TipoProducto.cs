@@ -14,8 +14,8 @@ namespace Desafio_Tecnico.Models.Entities
         [Column("ID")]
         public int Id { get; set; }
 
-        [Column("DESCRIPCION")]
-        public int Descripcion { get; set; }
+        [Column("DESCRIPCION", TypeName ="VARCHAR(200)")]
+        public string Descripcion { get; set; }
 
         public ICollection<Producto> Producto { get; set; }
 
