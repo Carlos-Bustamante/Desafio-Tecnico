@@ -36,10 +36,8 @@
 
   <ItemGroup>
     <Folder Include="Models\SQL\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Resource\" />
     <Folder Include="Repositories\Interfaces\" />
-    <Folder Include="View\" />
   </ItemGroup>
 
 </Project>
