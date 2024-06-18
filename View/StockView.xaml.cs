@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Desafio_Tecnico.Models;
+using Desafio_Tecnico.Repositories;
+using Desafio_Tecnico.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +26,9 @@ namespace Desafio_Tecnico.View
         public StockView()
         {
             InitializeComponent();
+            var context = new TestContext();
+            var repository = new StockRepository(context);
+            this.DataContext = new StockViewModel(repository);
         }
     }
 }

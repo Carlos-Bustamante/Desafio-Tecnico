@@ -37,7 +37,6 @@
   <ItemGroup>
     <Folder Include="Models\SQL\" />
     <Folder Include="Resource\" />
-    <Folder Include="Repositories\Interfaces\" />
   </ItemGroup>
 
 </Project>

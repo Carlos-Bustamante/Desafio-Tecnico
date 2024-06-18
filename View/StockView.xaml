@@ -85,10 +85,10 @@
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Id Stock" HeaderStringFormat=""/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Id Producto"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Nombre"/>
-                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
+                    <DataGridTextColumn Binding="{Binding IdStock}" ClipboardContentBinding="{x:Null}" Header="Id Stock" HeaderStringFormat=""/>
+                    <DataGridTextColumn Binding="{Binding IdProducto}" ClipboardContentBinding="{x:Null}" Header="Id Producto"/>
+                    <DataGridTextColumn Binding="{Binding Nombre}" ClipboardContentBinding="{x:Null}" Header="Nombre"/>
+                    <DataGridTextColumn Binding="{Binding Cantidad}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>
