@@ -10,10 +10,12 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Desafio_Tecnico.Models;
+using Desafio_Tecnico.Repositories;
 
 namespace Desafio_Tecnico.ViewModels
 {
-    public class StockViewModel : INotifyPropertyChanged
+    public class StockViewModel : ViewModelBase
     {
         private readonly IStockRepository _stockRepository;
         private ObservableCollection<Stock> _stocks;
@@ -40,6 +42,8 @@ namespace Desafio_Tecnico.ViewModels
         }
 
         public ICommand SearchCommand { get; set; }
+        // Constructor sin parámetros para uso en XAML
+        public StockViewModel() : this(new StockRepository(new TestContext())) { }
 
         public StockViewModel(IStockRepository stockRepository)
         {
@@ -49,7 +53,7 @@ namespace Desafio_Tecnico.ViewModels
             LoadData();
         }
 
-        private async void LoadData()
+        private async Task LoadData()
         {
             var stocks = await _stockRepository.GetAll();
             Stocks = new ObservableCollection<Stock>(stocks);
@@ -59,12 +63,6 @@ namespace Desafio_Tecnico.ViewModels
         {
             var stocks = await _stockRepository.SearchAsync(SearchTerm);
             Stocks = new ObservableCollection<Stock>(stocks);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 

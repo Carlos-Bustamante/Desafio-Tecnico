@@ -16,6 +16,7 @@ namespace Desafio_Tecnico.Repositories
         public Repository(TestContext testContext)
         {
             _context = testContext;
+            _dbSet = _context.Set<TEntity>();
         }
 
         public virtual async Task<bool> Add(TEntity data)
@@ -34,7 +35,7 @@ namespace Desafio_Tecnico.Repositories
             return true;
         }
         public TEntity? Get(int id) => _dbSet.Find(id);
-        public async Task<IEnumerable<TEntity>> GetAll() => await _dbSet.ToListAsync();
+        public virtual async Task<IEnumerable<TEntity>> GetAll() => await _dbSet.ToListAsync();
         public void Save() => _context.SaveChanges();
         public virtual async Task<bool> Update(TEntity data)
         {

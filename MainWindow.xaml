@@ -6,15 +6,34 @@
         xmlns:local="clr-namespace:Desafio_Tecnico" 
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" 
         xmlns:ViewModels="clr-namespace:Desafio_Tecnico.ViewModels"
+        xmlns:Views="clr-namespace:Desafio_Tecnico.View"
         mc:Ignorable="d"
         Title="Desafio Tecnico" Height="450" Width="800"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True">
-    <!--<Window.DataContext>
+    
+    
+    <Window.DataContext>
         <ViewModels:MainViewModels/>
-    </Window.DataContext>-->
+    </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type ViewModels:HomeViewModel}">
+            <Views:HomeView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type ViewModels:StockViewModel}">
+            <Views:StockView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type ViewModels:ProductsViewModel}">
+            <Views:ProductsView/>
+        </DataTemplate>
+    </Window.Resources>
+    
+    
     <Border CornerRadius="10"                    
            BorderThickness="1">
         <Border.BorderBrush>
@@ -60,7 +79,7 @@
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color1}"
                                  IsChecked="True"
-                                 Command="{Binding ShowHomeViewCommand}">
+                                 Command="{Binding ShowProductsViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Tag" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Productos" Style="{StaticResource menuButtonText}"/>
@@ -68,7 +87,7 @@
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color2}"
-                                 Command="{Binding ShowCustomerViewCommand}">
+                                 Command="{Binding ShowStockViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="ChartSimple" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Stock" Style="{StaticResource menuButtonText}"/>

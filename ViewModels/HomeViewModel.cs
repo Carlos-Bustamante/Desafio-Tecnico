@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Desafio_Tecnico.ViewModels
 {
-    public class HomeViewModel
+    public class HomeViewModel: ViewModelBase
     {
     }
 }

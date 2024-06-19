@@ -9,51 +9,32 @@ namespace Desafio_Tecnico.ViewModels
 {
     public class ViewModelCommand : ICommand
     {
-        //private readonly Action<object> _executeAction;
-        //private readonly Predicate<object> _canExecuteAction;
-        //public ViewModelCommand(Action<object> executeAction)
-        //{
-        //    _executeAction = executeAction;
-        //    _canExecuteAction = null;
-        //}
-        ////Evento
-        //public event EventHandler CanExecuteChanged
-        //{
-        //    add { CommandManager.RequerySuggested += value; }
-        //    remove { CommandManager.RequerySuggested -= value; }
-        //}
-        ////Metodo
-        //public bool CanExecute(object parameter)
-        //{
-        //    return _canExecuteAction == null ? true : _canExecuteAction(parameter);
-        //}
-        //public void Execute(object parameter)
-        //{
-        //    _executeAction(parameter);
-        //}
-        private readonly Action<object> _execute;
-        private readonly Predicate<object> _canExecute;
-
-        public ViewModelCommand(Action<object> execute, Predicate<object> canExecute = null)
+        private readonly Action<object> _executeAction;
+        private readonly Predicate<object> _canExecuteAction;
+        public ViewModelCommand(Action<object> executeAction)
         {
-            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
-            _canExecute = canExecute;
+            _executeAction = executeAction;
+            _canExecuteAction = null;
         }
-
-        public bool CanExecute(object parameter)
+        public ViewModelCommand(Action<object> executeAction, Predicate<Object> canExecuteAction)
         {
-            return _canExecute == null || _canExecute(parameter);
+            _executeAction = executeAction;
+            _canExecuteAction = canExecuteAction;
         }
-
-        public void Execute(object parameter)
-        {
-            _execute(parameter);
-        }
-
+        //Evento
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
+        }
+        //Metodo
+        public bool CanExecute(object parameter)
+        {
+            return _canExecuteAction == null ? true : _canExecuteAction(parameter);
+        }
+        public void Execute(object parameter)
+        {
+            _executeAction(parameter);
         }
     }
 }

@@ -3,10 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:Desafio_Tecnico.ViewModels"
              xmlns:local="clr-namespace:Desafio_Tecnico.View"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:StockViewModel />
+    </UserControl.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -17,32 +22,30 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="120"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Horizontal"
-                        VerticalAlignment="Top"
-                        Grid.Column="0">
-                <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource plainTextColor3}"/>
-                <TextBox Text="Search..."   
-                    FontSize="13"
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Grid.Column="0">
+                <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="Gray"/>
+                <TextBox Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}"   
+                         FontSize="13"
                          Height="24"
-                           Width="300"
-                           Background="Transparent"
-                             FontWeight="Medium"
-                             FontFamily="Montserrat"                            
-                             Foreground="{StaticResource plainTextColor3}"
-                             CaretBrush="{StaticResource plainTextColor3}"
-                             BorderBrush="{StaticResource plainTextColor3}"
-                             BorderThickness="0,0,0,1"                             
-                             VerticalContentAlignment="Center"
-                             Margin="5,5,0,0"></TextBox>
+                         Width="300"
+                         Background="Transparent"
+                         FontWeight="Medium"
+                         FontFamily="Montserrat"                            
+                         Foreground="Gray"
+                         CaretBrush="Gray"
+                         BorderBrush="Gray"
+                         BorderThickness="0,0,0,1"                             
+                         VerticalContentAlignment="Center"
+                         Margin="5,5,0,0"/>
             </StackPanel>
             <Button Grid.Column="1"
-                            Command="{Binding LoginCommand}"                            
-                            Content="Search"                            
-                            FontSize="12"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
-                            BorderThickness="0"
-                            Foreground="White"
+                    Command="{Binding SearchCommand}"                            
+                    Content="Search"                            
+                    FontSize="12"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    BorderThickness="0"
+                    Foreground="White"
                     VerticalAlignment="Top">
                 <Button.Style>
                     <Style TargetType="Button">
@@ -51,10 +54,10 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
                                     <Border Height="30"
-                                                    CornerRadius="15"
-                                                    Background="{TemplateBinding Background}">
+                                            CornerRadius="15"
+                                            Background="{TemplateBinding Background}">
                                         <ContentPresenter VerticalAlignment="Center"
-                                                                      HorizontalAlignment="Center"/>
+                                                          HorizontalAlignment="Center"/>
                                     </Border>
                                 </ControlTemplate>
                             </Setter.Value>
@@ -72,9 +75,10 @@
                 Background="#200F53"
                 CornerRadius="10" 
                 Padding="10">
-            <DataGrid ColumnWidth="*"
-                  Background="#200F53"
-                  BorderThickness="0">
+            <DataGrid ItemsSource="{Binding Stocks}" 
+                      AutoGenerateColumns="False" 
+                      Background="#200F53" 
+                      BorderThickness="0">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="Background" Value="Transparent"/>
@@ -85,10 +89,10 @@
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding IdStock}" ClipboardContentBinding="{x:Null}" Header="Id Stock" HeaderStringFormat=""/>
-                    <DataGridTextColumn Binding="{Binding IdProducto}" ClipboardContentBinding="{x:Null}" Header="Id Producto"/>
-                    <DataGridTextColumn Binding="{Binding Nombre}" ClipboardContentBinding="{x:Null}" Header="Nombre"/>
-                    <DataGridTextColumn Binding="{Binding Cantidad}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
+                    <DataGridTextColumn Binding="{Binding Id}" Header="Id Stock"/>
+                    <DataGridTextColumn Binding="{Binding IdProducto}" Header="Id Producto"/>
+                    <DataGridTextColumn Binding="{Binding Producto.Nombre}" Header="Nombre"/>
+                    <DataGridTextColumn Binding="{Binding Cantidad}" Header="Cantidad"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>

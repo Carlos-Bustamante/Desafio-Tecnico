@@ -24,5 +24,12 @@ namespace Desafio_Tecnico.Repositories
                 .Where(s => s.Producto.Nombre.Contains(searchTerm))
                 .ToListAsync();
         }
+
+        public override async Task<IEnumerable<Stock>> GetAll()
+        {
+            return await _context.Stocks
+                .Include(s => s.Producto)
+                .ToListAsync();
+        }
     }
 }
